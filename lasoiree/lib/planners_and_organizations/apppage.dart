@@ -13,7 +13,8 @@ class PlannersPage extends StatelessWidget {
       title: 'Flutter Mini Project',
       home: Scaffold(
         backgroundColor: Colors.pink.shade50,
-        appBar: AppBarWidget(title: 'Planners & Organizations'),
+        appBar:
+            AppBarWidget(title: 'Planners & Organizers', backgroundColor : Colors.white,),
         body: ListView.builder(
             itemCount: 3,
             itemBuilder: (BuildContext context, int index) {
