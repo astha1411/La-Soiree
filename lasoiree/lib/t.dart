@@ -65,6 +65,8 @@ class _CakesDessertsState extends State<CakesDesserts> {
                               child: Text("No Data..."),
                             );
                           } else {
+                            const Text("Hloo");
+
                             return ListView.builder(
                                 scrollDirection: Axis.vertical,
                                 itemCount: snapshot.data!.length,
@@ -72,17 +74,8 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                   //*************************************
                                   //Get Parse Object Values
                                   final varCakes = snapshot.data![index];
-                                  // final cakesData = CakesData(
-                                  //     name: 'hi',
-                                  //     image: '',
-                                  //     location: 'thane',
-                                  //     rating: 3);
-                                  final cakesData = CakesData(
-                                      name: varCakes.get<String>('name')!,
-                                      image: varCakes.get<String>('image')!,
-                                      location:
-                                          varCakes.get<String>('location')!,
-                                      rating: varCakes.get<int>('ratings')!);
+                                  final varTitle =
+                                      varCakes.get<String>('name')!;
 
                                   //*************************************
 
@@ -101,79 +94,8 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                         child: Container(
                                           child: Column(
                                             children: <Widget>[
-                                              toTitle(cakesData),
-                                              Container(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: <Widget>[
-                                                    toImage(cakesData),
-                                                    Container(
-                                                      height: 100,
-                                                      width: 130,
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceAround,
-                                                        children: [
-                                                          Container(
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: [
-                                                                call(),
-                                                                cost(),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: [
-                                                                location(
-                                                                    cakesData),
-                                                                map(),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Container(
-                                                            child: Row(
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceEvenly,
-                                                              children: [
-                                                                for (var i = 0;
-                                                                    i < 5;
-                                                                    i++)
-                                                                  ratings(
-                                                                      cakesData,
-                                                                      i),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              Container(
-                                                padding: EdgeInsets.fromLTRB(
-                                                    0, 17, 0, 0),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: [
-                                                    requestinfo(),
-                                                    ordernow(),
-                                                  ],
-                                                ),
-                                              ),
+                                              Text(varTitle),
+                                              Text("Hloo"),
                                             ],
                                           ),
                                         ),
@@ -207,7 +129,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
         width: 180,
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: new NetworkImage(data.getImage), fit: BoxFit.cover)),
+                image: new NetworkImage(data['image']), fit: BoxFit.cover)),
       ),
     );
   }
@@ -235,7 +157,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
           color: Colors.pink[100],
           child: ListTile(
             title: Text(
-              data.getName,
+              data['name'],
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black54,
@@ -256,7 +178,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
       padding: const EdgeInsets.only(left: 0.0),
       child: Container(
         child: Text(
-          data.getLocation,
+          data['location'],
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
         ),
       ),
@@ -271,7 +193,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
   }
 
   Widget ratings(data, i) {
-    if (i < data.getRating) {
+    if (i < data['rating']) {
       return Icon(
         Icons.star_rate,
         color: Colors.pink[200],
@@ -319,6 +241,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
     if (apiResponse.success && apiResponse.results != null) {
       return apiResponse.results as List<ParseObject>;
     } else {
+      print('Order Now');
       return [];
     }
   }
