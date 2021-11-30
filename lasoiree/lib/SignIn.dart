@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lasoiree/main1.dart';
 import 'package:lasoiree/Login.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,9 +23,11 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController usernamenameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  TextEditingController emailController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +84,7 @@ class _SignInState extends State<SignIn> {
                 Container(
                   padding: EdgeInsets.all(15),
                   child: TextField(
-                    controller: nameController,
+                    controller: usernamenameController,
                     decoration: InputDecoration(
                       labelText: 'Please Enter Your Username',
                       border: OutlineInputBorder(),
@@ -91,9 +94,29 @@ class _SignInState extends State<SignIn> {
                 Container(
                   padding: EdgeInsets.all(15),
                   child: TextField(
-                    controller: nameController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Please Enter Your Email',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: TextField(
+                    controller: phoneController,
+                    decoration: InputDecoration(
+                      labelText: 'Please Enter Your Phone Number',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: TextField(
+                    controller: addressController,
+                    decoration: InputDecoration(
+                      labelText: 'Please Enter Your Address',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -120,13 +143,73 @@ class _SignInState extends State<SignIn> {
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
+                        doUserRegistration();
                       },
                     )),
               ],
             )));
+  }
+
+  void showSuccess() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: const Text("User was successfully created!"),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showError(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(errorMessage),
+          actions: <Widget>[
+            new FlatButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void doUserRegistration() async {
+    final username = usernamenameController.text.trim();
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+    final address = addressController.text.trim();
+    final phone = int.parse(phoneController.text.trim());
+
+    final user = ParseUser.createUser(username, password, email)
+      ..set('phone', phone)
+      ..set('address', address);
+
+    var response = await user.signUp();
+
+    if (response.success) {
+      showSuccess();
+    } else {
+      showError(response.error!.message);
+    }
   }
 }

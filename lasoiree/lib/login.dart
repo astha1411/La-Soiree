@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lasoiree/main1.dart';
 import 'package:lasoiree/SignIn.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +23,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -65,7 +66,7 @@ class _LoginState extends State<Login> {
                 Container(
                   padding: EdgeInsets.all(15),
                   child: TextField(
-                    controller: nameController,
+                    controller: emailController,
                     decoration: InputDecoration(
                       labelText: 'Please Enter Your Email',
                       border: OutlineInputBorder(),
@@ -98,10 +99,7 @@ class _LoginState extends State<Login> {
                       color: Colors.pink[100],
                       child: Text('Login'),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
+                        doUserLogin();
                       },
                     )),
                 Container(
@@ -126,5 +124,63 @@ class _LoginState extends State<Login> {
                 ))
               ],
             )));
+  }
+
+  void showSuccess(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: Text(message),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showError(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(errorMessage),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void doUserLogin() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text.trim();
+
+    final user = ParseUser(email, password, null);
+
+    var response = await user.login();
+
+    if (response.success) {
+      showSuccess("User was successfully login!");
+    } else {
+      showError(response.error!.message);
+    }
   }
 }

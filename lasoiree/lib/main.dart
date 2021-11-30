@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:lasoiree/widgets/appbar/appbar.dart';
-import 'package:lasoiree/planners_and_organizations/widgets/cards.dart';
-import 'package:lasoiree/planners_and_organizations/apppage.dart';
-import 'package:lasoiree/orders/orderspage.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'package:lasoiree/SignIn.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final keyApplicationId = 'NJbgexsdPRQ1VdAToeixX1NkoHfcpXO01Fs9Lk6E';
+  final keyClientKey = '2lHrjv9YtPvZHATKRD4RwTyf3csxswNxfYabByk0';
+  final keyParseServerUrl = 'https://parseapi.back4app.com';
+
+  await Parse().initialize(keyApplicationId, keyParseServerUrl,
+      clientKey: keyClientKey, autoSendSessionId: true);
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SignIn();
+    return MaterialApp(
+      home: SignIn(),
+    );
   }
 }

@@ -1,8 +1,7 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:lasoiree/profile.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 void main() => runApp(MyApp());
 
@@ -600,10 +599,10 @@ class _HomePageState extends State<HomePage> {
             ListTile(
               title: const Text('Logout'),
               onTap: () {
+                doUserLogout();
                 // Update the state of the app
                 // ...
                 // Then close the drawer
-                Navigator.pop(context);
               },
             ),
           ],
@@ -620,5 +619,55 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
 
+  void showSuccess(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Success!"),
+          content: Text(message),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).popUntil((route) => route.isFirst);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void showError(String errorMessage) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Error!"),
+          content: Text(errorMessage),
+          actions: <Widget>[
+            new TextButton(
+              child: const Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void doUserLogout() async {
+    final user = await ParseUser.currentUser() as ParseUser;
+    var response = await user.logout();
+
+    if (response.success) {
+      showSuccess("User was successfully logout!");
+    } else {
+      showError(response.error!.message);
+    }
+  }
+}
