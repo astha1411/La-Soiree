@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:proj1/chat.dart';
-import 'package:proj1/main.dart';
+import 'package:lasoiree/chat.dart';
+import 'package:lasoiree/tmain.dart';
 
 class ChatUsers {
   String name;
@@ -9,10 +9,10 @@ class ChatUsers {
   String imageURL;
   String time;
   ChatUsers(
-      {@required this.name,
-      @required this.messageText,
-      @required this.imageURL,
-      @required this.time});
+      {@required this.name = '',
+      @required this.messageText = '',
+      @required this.imageURL = '',
+      @required this.time = ''});
 }
 
 List<ChatUsers> chatUsers = [
@@ -55,11 +55,11 @@ class ConversationList extends StatefulWidget {
   String time;
   bool isMessageRead;
   ConversationList(
-      {@required this.name,
-      @required this.messageText,
-      @required this.imageUrl,
-      @required this.time,
-      @required this.isMessageRead});
+      {@required this.name = '',
+      @required this.messageText = '',
+      @required this.imageUrl = '',
+      @required this.time = '',
+      @required this.isMessageRead = true});
   @override
   _ConversationListState createState() => _ConversationListState();
 }

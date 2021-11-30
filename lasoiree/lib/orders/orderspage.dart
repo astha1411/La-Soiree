@@ -116,9 +116,3 @@ class _OrdersPageState extends State<OrdersPage> {
     );
   }
 }
-/*
-void myorder() {
-   shape: Border(
-    bottom: BorderSide(color: Colors.black, width: 3)
-  ),
-  }*/

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'decor_data.dart';
-import 'package:proj1/mychats.dart';
+import 'package:lasoiree/mychats.dart';
 
 void main() {
   runApp(MyApp());

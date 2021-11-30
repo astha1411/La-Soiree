@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:proj1/main.dart';
-import 'package:proj1/SignIn.dart';
+import 'package:lasoiree/main1.dart';
+import 'package:lasoiree/SignIn.dart';
 
 void main() {
   runApp(MyApp());
