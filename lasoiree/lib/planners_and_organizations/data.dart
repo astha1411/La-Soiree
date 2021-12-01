@@ -46,14 +46,14 @@ class PlannersData {
       'name': 'Fabulous Day',
       'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVwVtDMwDRPm96gFvXMT7dUkqkP_JGKQB8vA&usqp=CAU',
       'location': 'Andheri',
-      'events': 'Bachlorette, Birthdays & Anniversaries, Weddings',
+      'events': 'Bachlorette, Birthdays & Anniversaries, Wedding',
       'number': '8137451990',
     },
     {
       'name': 'Snow White',
       'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBAdbWIHDWfG_3qRlvl4dW5uLXVDT2US6eiA&usqp=CAU',
       'location': 'Thane',
-      'events': 'Weddings, Bachlorette, Baby showers',
+      'events': 'Wedding, Bachlorette, Baby showers',
       'number': '7137451990',
     },
     {
@@ -67,7 +67,7 @@ class PlannersData {
       'name': 'Slendid Surprise',
       'image': 'https://www.adventurecity.com/wp-content/uploads/2021/07/party-tree-house-1-1280x720.jpg',
       'location': 'Mumbai',
-      'events': 'Weddings, Bachlorette, Birthdays & Anniversaries',
+      'events': 'Wedding, Bachlorette, Birthdays & Anniversaries',
       'number': '9234651978',
     },
     {
