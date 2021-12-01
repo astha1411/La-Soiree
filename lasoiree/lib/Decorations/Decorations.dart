@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'dart:async';
-import 'deco.dart';
+import 'data.dart';
 
 class Decorations extends StatefulWidget {
   @override

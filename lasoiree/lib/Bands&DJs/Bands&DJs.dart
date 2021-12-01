@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'data.dart';
+import 'cards.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'dart:async';
 
-class CakesDesserts extends StatefulWidget {
+class BandsDJs extends StatefulWidget {
   @override
-  _CakesDessertsState createState() => _CakesDessertsState();
+  _BandsDJsState createState() => _BandsDJsState();
 }
 
-class _CakesDessertsState extends State<CakesDesserts> {
+class _BandsDJsState extends State<BandsDJs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +19,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
         leading: BackButton(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Text("Cakes & Desserts", style: TextStyle(color: Colors.black)),
+        title: Text("Bands & DJs", style: TextStyle(color: Colors.black)),
         centerTitle: true,
       ),
       body: Flexible(
@@ -29,40 +29,16 @@ class _CakesDessertsState extends State<CakesDesserts> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
-              Expanded(
-                  child: FutureBuilder<List<ParseObject>>(
-                      future: getTodo(),
-                      builder: (context, snapshot) {
-                        switch (snapshot.connectionState) {
-                          case ConnectionState.none:
-                          case ConnectionState.waiting:
-                            return Center(
-                              child: Container(
-                                  width: 100,
-                                  height: 100,
-                                  child: CircularProgressIndicator()),
-                            );
-                          default:
-                            if (snapshot.hasError) {
-                              return Center(
-                                child: Text("Error..."),
-                              );
-                            }
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: Text("No Data..."),
-                              );
-                            } else {
-                              return ListView.builder(
+               ListView.builder(
                                   scrollDirection: Axis.vertical,
-                                  itemCount: snapshot.data!.length,
+                                  itemCount: 3,
                                   itemBuilder: (context, index) {
                                     //*************************************
                                     //Get Parse Object Values
-                                    final varCakes = snapshot.data![index];
 
-                                    final cakesData = CakesData(
-                                        name: varCakes.get<String>('name')!,
+                                    final cakesData = BandsDJsData(
+                                        name: 'Local Train',
+
                                         image: varCakes.get<String>('image')!,
                                         location:
                                             varCakes.get<String>('location')!,

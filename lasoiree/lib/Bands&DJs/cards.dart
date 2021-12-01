@@ -1,74 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lasoiree/mychats.dart';
-import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
-import 'dart:async';
-import 'data.dart';
+import 'package:lasoiree/Bands&DJs/data.dart';
 
-class RentDecorations extends StatefulWidget {
-  @override
-  _RentDecorationsState createState() => _RentDecorationsState();
-}
+class CardWidget extends StatelessWidget {
+  final BandsDJsData bandsDJs;
 
-class _RentDecorationsState extends State<RentDecorations> {
+  const CardWidget({
+    Key? key,
+    required this.bandsDJs,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(color: Colors.black),
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Text("Rent Decorations", style: TextStyle(color: Colors.black)),
-        centerTitle: true,
-      ),
-      body: Container(
-        color: Colors.pink[50],
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Expanded(
-                child: FutureBuilder<List<ParseObject>>(
-                    future: getData(),
-                    builder: (context, snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.none:
-                        case ConnectionState.waiting:
-                          return Center(
-                            child: Container(
-                                width: 100,
-                                height: 100,
-                                child: CircularProgressIndicator()),
-                          );
-                        default:
-                          if (snapshot.hasError) {
-                            return Center(
-                              child: Text("Error..."),
-                            );
-                          }
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: Text("No Data..."),
-                            );
-                          } else {
-                            return ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                itemCount: snapshot.data!.length,
-                                itemBuilder: (context, index) {
-                                  //*************************************
-                                  //Get Parse Object Values
-                                  final varDeco = snapshot.data![index];
-
-                                  final decoData = DecoData(
-                                      name: varDeco.get<String>('name')!,
-                                      image: varDeco.get<String>('image')!,
-                                      desc: varDeco.get<String>('description')!,
-                                      location:
-                                          varDeco.get<String>('location')!,
-                                      rating: varDeco.get<int>('ratings')!);
-
-                                  return Container(
+    return Container(
                                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
                                     constraints: BoxConstraints(
                                       maxHeight: double.infinity,
@@ -85,7 +29,7 @@ class _RentDecorationsState extends State<RentDecorations> {
                                         child: Container(
                                           child: Column(
                                             children: <Widget>[
-                                              toTitle(decoData),
+                                              toTitle(bandsDJs),
                                               Container(
                                                 child: Row(
                                                   mainAxisAlignment:
@@ -107,7 +51,7 @@ class _RentDecorationsState extends State<RentDecorations> {
                                                                       .spaceEvenly,
                                                               children: [
                                                                 location(
-                                                                    decoData),
+                                                                    bandsDJs),
                                                                 map(),
                                                                 call(),
                                                               ],
@@ -120,7 +64,7 @@ class _RentDecorationsState extends State<RentDecorations> {
                                                                       .spaceEvenly,
                                                               children: [
                                                                 description(
-                                                                    decoData),
+                                                                    bandsDJs),
                                                               ],
                                                             ),
                                                           ),
@@ -134,7 +78,7 @@ class _RentDecorationsState extends State<RentDecorations> {
                                                                     i < 5;
                                                                     i++)
                                                                   ratings(
-                                                                      decoData,
+                                                                     bandsDJs,
                                                                       i),
                                                               ],
                                                             ),
@@ -142,7 +86,7 @@ class _RentDecorationsState extends State<RentDecorations> {
                                                         ],
                                                       ),
                                                     ),
-                                                    toImage(decoData),
+                                                    toImage(bandsDJs),
                                                   ],
                                                 ),
                                               ),
@@ -154,7 +98,7 @@ class _RentDecorationsState extends State<RentDecorations> {
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: [
-                                                    rentnow(),
+                                                    ordernow(),
                                                   ],
                                                 ),
                                               ),
@@ -164,24 +108,8 @@ class _RentDecorationsState extends State<RentDecorations> {
                                       ),
                                     ),
                                   );
-                                });
-                          }
-                      }
-                    }))
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return MyChats();
-          }));
-        },
-        child: const Icon(Icons.message),
-        backgroundColor: Colors.pink,
-      ),
-    );
   }
+                               
 
   Widget toImage(data) {
     return Padding(
@@ -284,28 +212,19 @@ class _RentDecorationsState extends State<RentDecorations> {
     }
   }
 
-  Widget rentnow() {
+  Widget ordernow() {
     return FlatButton(
       padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
       color: Colors.pink[100],
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Text(
-        'Rent Now',
+        'Order Now',
         style: TextStyle(fontSize: 20),
       ),
       onPressed: () {},
     );
   }
 
-  Future<List<ParseObject>> getData() async {
-    QueryBuilder<ParseObject> queryTodo =
-        QueryBuilder<ParseObject>(ParseObject('Decorations'));
-    final ParseResponse apiResponse = await queryTodo.query();
-
-    if (apiResponse.success && apiResponse.results != null) {
-      return apiResponse.results as List<ParseObject>;
-    } else {
-      return [];
-    }
-  }
+  
+  
 }

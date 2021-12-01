@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+import 'package:lasoiree/Categories/categories.dart';
 import 'package:lasoiree/Decorations/Decorations.dart';
 import 'package:lasoiree/Cakes&Desserts/CakesDesserts.dart';
 import 'package:lasoiree/Planners&Organizers/apppage.dart';
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: PlannersPage(),
+      home: Categories(),
     );
   }
 }

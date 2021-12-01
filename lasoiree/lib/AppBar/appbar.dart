@@ -22,10 +22,9 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         style: const TextStyle(color: Colors.black),
       ),
       centerTitle: true,
-     
       elevation: 0,
       leading: IconButton(
-        icon: const Icon(Icons.arrow_back),
+        icon: const Icon(Icons.arrow_back_ios),
         color: Colors.black,
         onPressed: () {
           Navigator.of(context).maybePop();
