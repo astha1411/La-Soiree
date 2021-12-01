@@ -5,21 +5,21 @@ class PlannersData {
       'image': 'assets/planners/pic1.jpg',
       'location': 'Mumbai',
       'events': 'Wedding, Bachlorette, Parties',
-      'number': '9956751925',
+      'number': 9956751925,
     },
     {
       'name': 'Bait Al Dana',
       'image': 'assets/planners/pic2.jpg',
       'location': 'Mumbai',
       'events': 'Exhibitions, Grand Events, Parties, Wedding',
-      'number': '9678751925',
+      'number': 9678751925,
     },
     {
       'name': '4 Seasons Events',
       'image': 'assets/planners/pic3.jpg',
       'location': 'Mumbai',
       'events': 'Wedding, Bachlorette, Parties',
-      'number': '7956751925',
+      'number': 7956751925,
     },
   ];
 }

@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'plannersclass.dart';
+//import 'package:url_launcher/url_launcher.dart';
 //import 'package:maps_launcher/maps_launcher.dart';
 
 class PlannersCardWidget extends StatelessWidget {
-  final String name;
-  final String image;
-  final String events;
-  final String location;
-  final String number;
+  final PlannersData plannersData;
 
   const PlannersCardWidget({
     Key? key,
-    this.events = '',
-    this.image = '',
-    this.name = '',
-    this.location = '',
-    this.number = '',
+    required this.plannersData,
   }) : super(key: key);
 
   @override
@@ -40,7 +33,7 @@ class PlannersCardWidget extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 150,
                       child: Image.asset(
-                        image,
+                        plannersData.getImage,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -49,7 +42,7 @@ class PlannersCardWidget extends StatelessWidget {
                     padding: EdgeInsets.only(left: 13.0),
                     child: Row(
                       children: [
-                        Text(name,
+                        Text(plannersData.getName,
                             style: const TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
@@ -62,7 +55,7 @@ class PlannersCardWidget extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.location_on),
                           onPressed: () {
-                            _makePhoneCall('tel://${number}');
+                            // _makePhoneCall('tel://${number}');
                           }, //async
                           //launch('tel://${number}');
                           //launch('tel:98765433');
@@ -75,7 +68,7 @@ class PlannersCardWidget extends StatelessWidget {
                   Align(
                     alignment: Alignment(-0.9, 0.0),
                     child: Text(
-                      location,
+                      plannersData.getLocation,
                       style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -85,7 +78,7 @@ class PlannersCardWidget extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment(-0.75, 0.0),
-                    child: Text(events,
+                    child: Text(plannersData.getEvents,
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 17,
@@ -121,10 +114,10 @@ class PlannersCardWidget extends StatelessWidget {
   }
 }
 
-Future<void> _makePhoneCall(String url) async {
-  if (await canLaunch(url)) {
-    await launch(url);
-  } else {
-    throw 'Could not launch $url';
-  }
-}
+// Future<void> _makePhoneCall(String url) async {
+//   if (await canLaunch(url)) {
+//     await launch(url);
+//   } else {
+//     throw 'Could not launch $url';
+//   }
+// }

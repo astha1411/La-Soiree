@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lasoiree/main.dart';
-import 'package:lasoiree/resetPassword.dart';
+import 'package:lasoiree/main1.dart';
 import 'package:lasoiree/SignIn.dart';
 
 void main() {
@@ -12,17 +11,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Reset(),
+      home: Login(),
     );
   }
 }
 
-class Reset extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  _ResetState createState() => _ResetState();
+  _LoginState createState() => _LoginState();
 }
 
-class _ResetState extends State<Reset> {
+class _LoginState extends State<Login> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -48,7 +47,7 @@ class _ResetState extends State<Reset> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        'Reset',
+                        'Login',
                         style: TextStyle(color: Colors.white, fontSize: 30),
                         textAlign: TextAlign.center,
                       ),
@@ -56,7 +55,7 @@ class _ResetState extends State<Reset> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        'Reset your password',
+                        'Sign in to continue',
                         style: TextStyle(color: Colors.white, fontSize: 15),
                         textAlign: TextAlign.center,
                       ),
@@ -74,20 +73,57 @@ class _ResetState extends State<Reset> {
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: TextField(
+                    obscureText: true,
+                    controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                ),
+                FlatButton(
+                  onPressed: () {
+                    //forgot password screen
+                  },
+                  textColor: Colors.pink[100],
+                  child: Text('Forgot Password'),
+                ),
+                Container(
                     height: 50,
                     padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                     child: RaisedButton(
                       textColor: Colors.white,
                       color: Colors.pink[100],
-                      child: Text('Reset Password'),
+                      child: Text('Login'),
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => ResetPassword()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
                       },
                     )),
+                Container(
+                    child: Row(
+                  children: <Widget>[
+                    Text('Does not have account?'),
+                    FlatButton(
+                      textColor: Colors.pink[100],
+                      child: Text(
+                        'Sign in',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignIn()),
+                        );
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ))
               ],
             )));
   }

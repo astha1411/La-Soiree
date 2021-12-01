@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:lasoiree/main.dart';
-import 'package:lasoiree/resetPassword.dart';
-import 'package:lasoiree/SignIn.dart';
-import 'package:lasoiree/reset.dart';
-import 'package:lasoiree/login.dart';
+import 'package:lasoiree/main1.dart';
+import 'package:lasoiree/Login.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,17 +11,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ResetPassword(),
+      home: SignIn(),
     );
   }
 }
 
-class ResetPassword extends StatefulWidget {
+class SignIn extends StatefulWidget {
   @override
-  _ResetPasswordState createState() => _ResetPasswordState();
+  _SignInState createState() => _SignInState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _SignInState extends State<SignIn> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -50,29 +47,54 @@ class _ResetPasswordState extends State<ResetPassword> {
                     Container(
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        'Reset',
+                        'Create new Account',
                         style: TextStyle(color: Colors.white, fontSize: 30),
                         textAlign: TextAlign.center,
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        'Reset your password',
-                        style: TextStyle(color: Colors.white, fontSize: 15),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
+                        child: Row(
+                      children: <Widget>[
+                        Text(
+                          'Already registered?',
+                          style: TextStyle(color: Colors.white, fontSize: 15),
+                          textAlign: TextAlign.center,
+                        ),
+                        FlatButton(
+                          textColor: Colors.white,
+                          child: Text(
+                            'Login',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => Login()),
+                            );
+                          },
+                        )
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    )),
                   ]),
                 ),
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  padding: EdgeInsets.all(15),
                   child: TextField(
-                    obscureText: true,
-                    controller: passwordController,
+                    controller: nameController,
                     decoration: InputDecoration(
+                      labelText: 'Please Enter Your Username',
                       border: OutlineInputBorder(),
-                      labelText: 'Enter new Password',
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(15),
+                  child: TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      labelText: 'Please Enter Your Email',
+                      border: OutlineInputBorder(),
                     ),
                   ),
                 ),
@@ -83,21 +105,24 @@ class _ResetPasswordState extends State<ResetPassword> {
                     controller: passwordController,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Confirm Password',
+                      labelText: 'Enter Password',
                     ),
                   ),
                 ),
                 Container(
-                    height: 70,
-                    padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    height: 80,
+                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                     child: RaisedButton(
                       textColor: Colors.white,
-                      color: Colors.pink[100],
-                      child: Text('Reset Password'),
+                      color: Colors.pink[200],
+                      child: Text(
+                        'Signin',
+                        style: TextStyle(fontSize: 20),
+                      ),
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Login()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
                       },
                     )),
