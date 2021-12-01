@@ -1,30 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'cakes.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 import 'dart:async';
+import 'deco.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
+class RentDecorations extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: CakesDesserts(),
-    );
-  }
+  _RentDecorationsState createState() => _RentDecorationsState();
 }
 
-class CakesDesserts extends StatefulWidget {
-  @override
-  _CakesDessertsState createState() => _CakesDessertsState();
-}
-
-class _CakesDessertsState extends State<CakesDesserts> {
+class _RentDecorationsState extends State<RentDecorations> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +19,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
         leading: BackButton(color: Colors.black),
         backgroundColor: Colors.white,
         elevation: 0.0,
-        title: Text("Cakes & Desserts", style: TextStyle(color: Colors.black)),
+        title: Text("Rent Decorations", style: TextStyle(color: Colors.black)),
         centerTitle: true,
       ),
       body: Container(
@@ -43,7 +30,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
           children: <Widget>[
             Expanded(
                 child: FutureBuilder<List<ParseObject>>(
-                    future: getTodo(),
+                    future: getData(),
                     builder: (context, snapshot) {
                       switch (snapshot.connectionState) {
                         case ConnectionState.none:
@@ -71,24 +58,21 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                 itemBuilder: (context, index) {
                                   //*************************************
                                   //Get Parse Object Values
-                                  final varCakes = snapshot.data![index];
-                                  // final cakesData = CakesData(
-                                  //     name: 'hi',
-                                  //     image: '',
-                                  //     location: 'thane',
-                                  //     rating: 3);
-                                  final cakesData = CakesData(
-                                      name: varCakes.get<String>('name')!,
-                                      image: varCakes.get<String>('image')!,
-                                      location:
-                                          varCakes.get<String>('location')!,
-                                      rating: varCakes.get<int>('ratings')!);
+                                  final varDeco = snapshot.data![index];
 
-                                  //*************************************
+                                  final decoData = DecoData(
+                                      name: varDeco.get<String>('name')!,
+                                      image: varDeco.get<String>('image')!,
+                                      desc: varDeco.get<String>('description')!,
+                                      location:
+                                          varDeco.get<String>('location')!,
+                                      rating: varDeco.get<int>('ratings')!);
 
                                   return Container(
                                     padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                                    height: 250,
+                                    constraints: BoxConstraints(
+                                      maxHeight: double.infinity,
+                                    ),
                                     width: double.maxFinite,
                                     child: Card(
                                       color: Colors.white,
@@ -101,17 +85,16 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                         child: Container(
                                           child: Column(
                                             children: <Widget>[
-                                              toTitle(cakesData),
+                                              toTitle(decoData),
                                               Container(
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: <Widget>[
-                                                    toImage(cakesData),
                                                     Container(
-                                                      height: 100,
-                                                      width: 130,
+                                                      height: 130,
+                                                      width: 120,
                                                       child: Column(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -123,8 +106,10 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                                                   MainAxisAlignment
                                                                       .spaceEvenly,
                                                               children: [
+                                                                location(
+                                                                    decoData),
+                                                                map(),
                                                                 call(),
-                                                                cost(),
                                                               ],
                                                             ),
                                                           ),
@@ -134,9 +119,8 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                                                   MainAxisAlignment
                                                                       .spaceEvenly,
                                                               children: [
-                                                                location(
-                                                                    cakesData),
-                                                                map(),
+                                                                description(
+                                                                    decoData),
                                                               ],
                                                             ),
                                                           ),
@@ -150,7 +134,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                                                     i < 5;
                                                                     i++)
                                                                   ratings(
-                                                                      cakesData,
+                                                                      decoData,
                                                                       i),
                                                               ],
                                                             ),
@@ -158,6 +142,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                                         ],
                                                       ),
                                                     ),
+                                                    toImage(decoData),
                                                   ],
                                                 ),
                                               ),
@@ -169,8 +154,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
                                                       MainAxisAlignment
                                                           .spaceEvenly,
                                                   children: [
-                                                    requestinfo(),
-                                                    ordernow(),
+                                                    rentnow(),
                                                   ],
                                                 ),
                                               ),
@@ -203,8 +187,8 @@ class _CakesDessertsState extends State<CakesDesserts> {
     return Padding(
       padding: const EdgeInsets.only(left: 0.0),
       child: Container(
-        height: 100,
-        width: 180,
+        height: 130,
+        width: 120,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: new NetworkImage(data.getImage), fit: BoxFit.cover)),
@@ -215,7 +199,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
   Widget call() {
     return Icon(
       FontAwesomeIcons.phone,
-      size: 25,
+      size: 20,
     );
   }
 
@@ -223,6 +207,21 @@ class _CakesDessertsState extends State<CakesDesserts> {
     return Icon(
       FontAwesomeIcons.rupeeSign,
       size: 25,
+    );
+  }
+
+  Widget description(data) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 0.0),
+      child: Container(
+        width: 120,
+        child: Text(
+          data.getDescription,
+          style: TextStyle(
+            fontSize: 10,
+          ),
+        ),
+      ),
     );
   }
 
@@ -257,7 +256,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
       child: Container(
         child: Text(
           data.getLocation,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
         ),
       ),
     );
@@ -266,7 +265,7 @@ class _CakesDessertsState extends State<CakesDesserts> {
   Widget map() {
     return Icon(
       FontAwesomeIcons.mapMarker,
-      size: 25,
+      size: 20,
     );
   }
 
@@ -285,35 +284,22 @@ class _CakesDessertsState extends State<CakesDesserts> {
     }
   }
 
-  Widget requestinfo() {
+  Widget rentnow() {
     return FlatButton(
-      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+      padding: EdgeInsets.fromLTRB(50, 10, 50, 10),
       color: Colors.pink[100],
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Text(
-        'Request Info',
-        style: TextStyle(fontSize: 15),
+        'Rent Now',
+        style: TextStyle(fontSize: 20),
       ),
       onPressed: () {},
     );
   }
 
-  Widget ordernow() {
-    return FlatButton(
-      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      color: Colors.pink[100],
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Text(
-        'Order Now',
-        style: TextStyle(fontSize: 15),
-      ),
-      onPressed: () {},
-    );
-  }
-
-  Future<List<ParseObject>> getTodo() async {
+  Future<List<ParseObject>> getData() async {
     QueryBuilder<ParseObject> queryTodo =
-        QueryBuilder<ParseObject>(ParseObject('Cake'));
+        QueryBuilder<ParseObject>(ParseObject('Decorations'));
     final ParseResponse apiResponse = await queryTodo.query();
 
     if (apiResponse.success && apiResponse.results != null) {

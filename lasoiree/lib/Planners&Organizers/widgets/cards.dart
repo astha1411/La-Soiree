@@ -62,7 +62,7 @@ class PlannersCardWidget extends StatelessWidget {
                         IconButton(
                           icon: const Icon(Icons.location_on),
                           onPressed: () {
-                            _makePhoneCall('tel://${number}');
+                            // _makePhoneCall('tel://${number}');
                           }, //async
                           //launch('tel://${number}');
                           //launch('tel:98765433');

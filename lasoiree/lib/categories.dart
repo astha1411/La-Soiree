@@ -1,3 +1,23 @@
+import 'package:flutter/material.dart';
+import 'package:lasoiree/planners_and_organizations/widgets/cards.dart';
+import 'package:lasoiree/planners_and_organizations/data.dart';
+import 'package:lasoiree/Appbar/appbar.dart';
+
+
+
+class PlannersPage extends StatelessWidget {
+  List data = PlannersData.getData;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Mini Project',
+      home: Scaffold(
+        backgroundColor: Colors.pink.shade50,
+        appBar:
+            AppBarWidget(title: 'Planners & Organizers', backgroundColor : Colors.white,),
+        body:
 Column(mainAxisAlignment: MainAxisAlignment.center, children: <
                 Widget>[
               Container(
@@ -76,7 +96,4 @@ Column(mainAxisAlignment: MainAxisAlignment.center, children: <
                 ),
               )
             ]),
-            Container(
-              margin: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-              height: 80,
-              child: Text(
+            

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:lasoiree/widgets/appbar/appbar.dart';
-import 'package:lasoiree/planners_and_organizations/widgets/cards.dart';
-import 'package:lasoiree/planners_and_organizations/apppage.dart';
+import 'package:lasoiree/Appbar/appbar.dart';
+
 import 'package:lasoiree/orders/orderspage.dart';
-import 'package:lasoiree/SignIn.dart';
+import 'package:lasoiree/Users/SignIn.dart';
 
 void main() => runApp(const MyApp());
 

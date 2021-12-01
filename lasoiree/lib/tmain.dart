@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lasoiree/mychats.dart';
-import 'package:lasoiree/profile.dart';
+import 'package:lasoiree/Users/profile.dart';
 
 void main() => runApp(MyApp());
 
