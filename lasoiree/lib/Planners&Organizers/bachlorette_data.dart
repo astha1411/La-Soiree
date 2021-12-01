@@ -1,46 +1,18 @@
-class PlannersData {
+class BachlorettePlannersData {
   static final getData = [
     {
       'name': '4 Seasons Events',
       'image': 'assets/planners/pic1.jpg',
       'location': 'Mumbai',
       'events': 'Wedding, Bachlorette, Parties',
-      'number': 9956751925,
-    },
-    {
-      'name': 'Bait Al Dana',
-      'image': 'assets/planners/pic2.jpg',
-      'location': 'Mumbai',
-      'events': 'Exhibitions, Grand Events, Parties, Wedding',
-      'number': 9678751925,
+      'number': '9956751925',
     },
     {
       'name': '4 Seasons Events',
       'image': 'assets/planners/pic3.jpg',
       'location': 'Mumbai',
       'events': 'Wedding, Bachlorette, Parties',
-      'number': 7956751925,
-    },
-    {
-      'name': 'Liliss Events',
-      'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRYDrcRZnkKUKxjqRMrs6TnvJg7wFee5AVVQ&usqp=CAU',
-      'location': 'Thane',
-      'events': 'Wedding, Baby Shower, Parties',
-      'number': '8954451934',
-    },
-    {
-      'name': 'Rose Palace Weddings',
-      'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqvpHc2AYm9yJZKXr8OBD_LXK7bxx0SMCpIQ&usqp=CAU',
-      'location': 'Pune',
-      'events': 'Wedding',
-      'number': '9023451937',
-    },
-    {
-      'name': 'The Event Houzz',
-      'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLZVK4rr0txG7TS9iGBhB61IcMH0QN5pWH6Q&usqp=CAU',
-      'location': 'Powai',
-      'events': 'Birthdays & Anniversaries, Baby showers',
-      'number': '7022451932',
+      'number': '7956751925',
     },
     {
       'name': 'Fabulous Day',
@@ -69,13 +41,6 @@ class PlannersData {
       'location': 'Mumbai',
       'events': 'Wedding, Bachlorette, Birthdays & Anniversaries',
       'number': '9234651978',
-    },
-    {
-      'name': 'The Moments',
-      'image': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUVfOueJkbhONhWC1z2rxhUls1SZoS3ubKIQ&usqp=CAU',
-      'location': 'Powai',
-      'events': 'Birthdays & Anniversaries, Baby showers',
-      'number': '9922451935',
     },
   ];
 }
