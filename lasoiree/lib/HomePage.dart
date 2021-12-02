@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:lasoiree/Categories/categories.dart';
 import 'package:lasoiree/Planners&Organizers/Planners&Organizers.dart';
 import  'package:lasoiree/orders/orderspage.dart';
+import 'package:lasoiree/Cakes&Desserts/CakesDesserts.dart';
+import 'package:lasoiree/Photography&Video/PhotographyVideo.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:lasoiree/profile.dart';
 import 'package:lasoiree/Login.dart';
+import 'package:lasoiree/Decorations/RentDecorations.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -162,7 +165,8 @@ class _HomePageState extends State<HomePage> {
                   children: <Widget>[
                     Stack(
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          child:Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.pink[200],
@@ -176,6 +180,12 @@ class _HomePageState extends State<HomePage> {
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
+                        ),
+                          onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return CakesDesserts();
+                          }));
+                        },
                         ),
                         Positioned(
                           left: 35,
@@ -228,7 +238,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Stack(
                       children: <Widget>[
-                        Container(
+                        InkWell(
+                          child:Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             color: Colors.pink[200],
@@ -242,6 +253,12 @@ class _HomePageState extends State<HomePage> {
                             textAlign: TextAlign.center,
                             style: TextStyle(color: Colors.white, fontSize: 15),
                           ),
+                        ),
+                         onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return PhotographyVideos();
+                          }));
+                        },
                         ),
                         Positioned(
                           left: 35,
@@ -469,7 +486,8 @@ class _HomePageState extends State<HomePage> {
               ),
               Column(mainAxisAlignment: MainAxisAlignment.center, children: <
                   Widget>[
-                Container(
+                InkWell(
+                  child:Container(
                   width: double.infinity,
                   height: 100,
                   alignment: Alignment.center,
@@ -493,6 +511,12 @@ class _HomePageState extends State<HomePage> {
                         fontSize: 20,
                         fontWeight: FontWeight.w700),
                   ),
+                ),
+                onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) {
+                            return Decorations();
+                          }));
+                        },
                 ),
                 Container(
                   width: double.infinity,
