@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lasoiree/AppBar/appbar.dart';
 import 'package:lasoiree/mychats.dart';
 import 'cards.dart';
 import 'data.dart';
@@ -22,13 +23,9 @@ class _PhotographyVideosState extends State<PhotographyVideos> {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Mini Project',
       home: Scaffold(
-        appBar: AppBar(
-          leading: BackButton(color: Colors.black),
+        appBar: AppBarWidget(
           backgroundColor: Colors.white,
-          elevation: 0.0,
-          title: Text("Photographers & Video",
-              style: TextStyle(color: Colors.black)),
-          centerTitle: true,
+          title: "Photographers & Video",
         ),
         body: Container(
             color: Colors.pink[50],

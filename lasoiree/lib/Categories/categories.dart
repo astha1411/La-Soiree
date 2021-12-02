@@ -15,12 +15,9 @@ class Categories extends StatelessWidget {
         home: Scaffold(
             backgroundColor: Colors.pink.shade50,
             appBar: AppBarWidget(
-              leading: BackButton(color: Colors.black),
-              title: 'Categories',
+              title: "Categories",
               backgroundColor: Colors.white,
-
             ),
-          
             body: SingleChildScrollView(
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

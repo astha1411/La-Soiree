@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Mini Project',
-      home: FoodCaterers(),
+      home: HomePage(),
     );
   }
 }

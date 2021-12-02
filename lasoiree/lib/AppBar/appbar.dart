@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lasoiree/HomePage.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -25,6 +26,11 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         elevation: 0,
         leading: BackButton(
           color: Colors.black,
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HomePage();
+            }));
+          },
         ),
       ),
     );
