@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lasoiree/Categories/categories.dart';
 import 'package:lasoiree/Planners&Organizers/Planners&Organizers.dart';
+import 'package:lasoiree/foodCaterers.dart';
 import 'package:lasoiree/orders/orderspage.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:lasoiree/profile.dart';
 import 'package:lasoiree/Login.dart';
+import 'package:lasoiree/Decorations/RentDecorations.dart';
+
+import 'Cakes&Desserts/CakesDesserts.dart';
+import 'Photography&Video/PhotographyVideo.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -32,11 +37,16 @@ class _HomePageState extends State<HomePage> {
           ),
           actions: [
             IconButton(
-                icon: Icon(
-                  Icons.shopping_cart,
-                  color: Colors.pink[300],
-                ),
-                onPressed: () {}),
+              icon: Icon(
+                Icons.shopping_cart,
+                color: Colors.pink[300],
+              ),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return OrdersPage();
+                }));
+              },
+            ),
           ],
         ),
         SliverList(
@@ -156,21 +166,29 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Stack(
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.pink[200],
+                          InkWell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.pink[200],
+                              ),
+                              width: 100,
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.all(8),
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Cakes & Desserts",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
                             ),
-                            width: 100,
-                            padding: EdgeInsets.all(5),
-                            margin: EdgeInsets.all(8),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Cakes & Desserts",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return CakesDesserts();
+                              }));
+                            },
                           ),
                           Positioned(
                             left: 35,
@@ -190,22 +208,29 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Stack(
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.pink[200],
-                            ),
-                            width: 100,
-                            padding: EdgeInsets.all(5),
-                            margin: EdgeInsets.all(8),
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Food & Caterers',
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
-                          ),
+                          InkWell(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.pink[200],
+                                ),
+                                width: 100,
+                                padding: EdgeInsets.all(5),
+                                margin: EdgeInsets.all(8),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  'Food & Caterers',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 15),
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return FoodCaterers();
+                                }));
+                              }),
                           Positioned(
                             left: 35,
                             bottom: 75,
@@ -224,21 +249,29 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Stack(
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.pink[200],
+                          InkWell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.pink[200],
+                              ),
+                              width: 100,
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.all(8),
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Photography & Video",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
                             ),
-                            width: 100,
-                            padding: EdgeInsets.all(5),
-                            margin: EdgeInsets.all(8),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Photography & Video",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return PhotographyVideos();
+                              }));
+                            },
                           ),
                           Positioned(
                             left: 35,
@@ -465,55 +498,37 @@ class _HomePageState extends State<HomePage> {
             ),
             Column(mainAxisAlignment: MainAxisAlignment.center, children: <
                 Widget>[
-              Container(
-                width: double.infinity,
-                height: 100,
-                alignment: Alignment.center,
-                margin:
-                    EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 10),
-                padding: EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://m.media-amazon.com/images/I/716IOaeXW6L._SY355_.jpg'),
-                      fit: BoxFit.cover,
-                      colorFilter: new ColorFilter.mode(
-                          Colors.black.withOpacity(0.4), BlendMode.dstATop),
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.pink[300]),
-                child: Text(
-                  "Decor & Furniture",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
+              InkWell(
+                child: Container(
+                  width: double.infinity,
+                  height: 100,
+                  alignment: Alignment.center,
+                  margin:
+                      EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 10),
+                  padding: EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            'https://m.media-amazon.com/images/I/716IOaeXW6L._SY355_.jpg'),
+                        fit: BoxFit.cover,
+                        colorFilter: new ColorFilter.mode(
+                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.pink[300]),
+                  child: Text(
+                    "Decor & Furnitures",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
-              ),
-              Container(
-                width: double.infinity,
-                height: 100,
-                alignment: Alignment.center,
-                margin:
-                    EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 10),
-                padding: EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://prestigiousvenues.com/wp-content/uploads/2017/03/Birthday-Party-On-The-Beach-Round-Hill-Resort-Prestigious-Venues.jpg'),
-                      fit: BoxFit.cover,
-                      colorFilter: new ColorFilter.mode(
-                          Colors.black.withOpacity(0.5), BlendMode.dstATop),
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.pink[300]),
-                child: Text(
-                  "Venues",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
-                ),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Decorations();
+                  }));
+                },
               ),
               Container(
                 width: double.infinity,
