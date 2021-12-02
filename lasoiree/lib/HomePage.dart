@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lasoiree/Categories/categories.dart';
 import 'package:lasoiree/Planners&Organizers/Planners&Organizers.dart';
+import  'package:lasoiree/orders/orderspage.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:lasoiree/profile.dart';
+import 'package:lasoiree/Login.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -608,19 +610,17 @@ class _HomePageState extends State<HomePage> {
               ListTile(
                 title: const Text('My Orders'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return OrdersPage();
+                  }));
                 },
               ),
               ListTile(
                 title: const Text('Logout'),
                 onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return Login();
+                  }));
                 },
               ),
             ],
