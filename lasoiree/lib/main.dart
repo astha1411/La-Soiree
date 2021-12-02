@@ -5,8 +5,10 @@ import 'package:lasoiree/Categories/categories.dart';
 import 'package:lasoiree/Decorations/RentDecorations.dart';
 import 'package:lasoiree/Cakes&Desserts/CakesDesserts.dart';
 import 'package:lasoiree/Planners&Organizers/Planners&Organizers.dart';
-
+import 'HomePage.dart';
 import 'Planners&Organizers/Planners&Organizers.dart';
+import 'Photography&Video/PhotographyVideo.dart';
+import 'Orders/orderspage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,6 +20,6 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return PlannersOrganizers();
+    return OrdersPage();
   }
 }

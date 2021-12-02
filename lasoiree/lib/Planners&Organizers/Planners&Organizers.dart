@@ -7,6 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lasoiree/mychats.dart';
 
 class PlannersOrganizers extends StatelessWidget {
+  
   final Stream<QuerySnapshot> cakes =
       FirebaseFirestore.instance.collection('planners').snapshots();
 

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lasoiree/Cakes&Desserts/data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -78,7 +79,7 @@ class CardWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       requestinfo(),
-                      ordernow(),
+                      ordernow(cakesData),
                     ],
                   ),
                 ),
@@ -189,7 +190,7 @@ class CardWidget extends StatelessWidget {
     );
   }
 
-  Widget ordernow() {
+  Widget ordernow(data) {
     return FlatButton(
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       color: Colors.pink[100],
@@ -198,7 +199,11 @@ class CardWidget extends StatelessWidget {
         'Order Now',
         style: TextStyle(fontSize: 15),
       ),
-      onPressed: () {},
+      onPressed: () {
+        FirebaseFirestore.instance
+            .collection('cakes')
+            .add({'name': data.getName, 'category': 'Cakes & Desserts'});
+      },
     );
   }
 

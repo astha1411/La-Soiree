@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
@@ -14,85 +15,100 @@ class CardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-        alignment: Alignment.center,
-        child: Stack(alignment: Alignment.topCenter, children: <Widget>[
-          Container(
-              height: 170,
-              width: 370,
-              child: Card(
-                //decoration: const BoxDecoration(color: Colors.red),
-                shape: BeveledRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15)),
+    return Padding(
+        // Even Padding On All Sides
+        padding: EdgeInsets.all(10.0),
+        child: Align(
+            alignment: Alignment.center,
+            child: Stack(alignment: Alignment.topCenter, children: <Widget>[
+              Container(
+                  height: 170,
+                  width: 370,
+                  child: Card(
+                    //decoration: const BoxDecoration(color: Colors.red),
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                    ),
+                    elevation: 0.0,
+                  )),
+
+              //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Positioned(
+                top: 90,
+                left: 35,
+                child: Text(
+                  category,
+                  style: const TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17),
                 ),
-                elevation: 0.0,
-              )),
-
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          Positioned(
-            top: 90,
-            left: 35,
-            child: Text(
-              category,
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17),
-            ),
-          ),
-          Container(
-              height: 67,
-              width: 375,
-              child: Card(
-                  color: Colors.pink[100],
-                  shape: BeveledRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15)),
-                  ),
-                  elevation: 0.0,
-                  child: Center(
-                    child: Text(
-                      name,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 25),
-                    ),
-                  ))),
-
-          Positioned(
-              top: 120,
-              child: SizedBox(
-                  width: 300,
-                  height: 35,
-                  child: ElevatedButton(
-                    child: isCancel
-                        ? Text(
-                            "Cancel Order",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        : Text(
-                            "Reorder",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                    onPressed: () {
-                      print('Pressed');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12), // <-- Radius
+              ),
+              Container(
+                  height: 67,
+                  width: 375,
+                  child: Card(
+                      color: Colors.pink[100],
+                      shape: BeveledRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(15)),
                       ),
-                      elevation: 10,
-                      primary: Colors.pink.shade50,
-                    ),
-                  )))
-        ]));
+                      elevation: 0.0,
+                      child: Center(
+                        child: Text(
+                          name,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 25),
+                        ),
+                      ))),
+
+              Positioned(
+                  top: 120,
+                  child: SizedBox(
+                      width: 300,
+                      height: 35,
+                      child: ElevatedButton(
+                        child: isCancel
+                            ? Text(
+                                "Cancel Order",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            : Text(
+                                "Reorder",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                        onPressed: isCancel
+                            ? () async {
+                                var collection = FirebaseFirestore.instance
+                                    .collection('orders');
+                                var snapshot = await collection
+                                    .where('name', isEqualTo: name)
+                                    .get();
+                                await snapshot.docs.first.reference.delete();
+                              }
+                            : () {
+                                FirebaseFirestore.instance
+                                    .collection('orders')
+                                    .add({'name': name, 'category': category});
+                              },
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.circular(12), // <-- Radius
+                          ),
+                          elevation: 10,
+                          primary: Colors.pink.shade50,
+                        ),
+                      )))
+            ])));
   }
 }

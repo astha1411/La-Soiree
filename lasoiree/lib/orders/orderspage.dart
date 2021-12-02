@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lasoiree/AppBar/appbar.dart';
 import 'package:lasoiree/orders/data/previousorders.dart';
@@ -10,8 +11,10 @@ class OrdersPage extends StatefulWidget {
 }
 
 class _OrdersPageState extends State<OrdersPage> {
-  List currdata = CurrentOrders.getData;
-  List prevdata = PreviousOrders.getData;
+  final Stream<QuerySnapshot> orders =
+      FirebaseFirestore.instance.collection('orders').snapshots();
+  final Stream<QuerySnapshot> prevo =
+      FirebaseFirestore.instance.collection('preorders').snapshots();
   bool isPrev = true;
 
   @override
@@ -87,30 +90,65 @@ class _OrdersPageState extends State<OrdersPage> {
                 ),
               ),
               Expanded(
-                  child: SizedBox(
-                height: 200,
-                child: ListView.separated(
-                    separatorBuilder: (BuildContext context, int index) {
-                      return SizedBox(
-                        height: 50,
-                      );
-                    },
-                    itemCount: 3,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      return isPrev
-                          ? CardWidget(
-                              name: prevdata[index]['name'],
-                              category: prevdata[index]['category'],
-                              isCancel: false,
-                            )
-                          : CardWidget(
-                              name: currdata[index]['name'],
-                              category: currdata[index]['category'],
-                              isCancel: true,
+                child: SizedBox(
+                  height: 200,
+                  child: isPrev
+                      ? StreamBuilder<QuerySnapshot>(
+                          stream: prevo,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return Text('Something went wrong');
+                            }
+
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Text("Loading");
+                            }
+
+                            return ListView(
+                              children: snapshot.data!.docs
+                                  .map((DocumentSnapshot document) {
+                                Map<String, dynamic> data =
+                                    document.data()! as Map<String, dynamic>;
+                                return CardWidget(
+                                  name: data['name'],
+                                  category: data['category'],
+                                  isCancel: false,
+                                );
+                              }).toList(),
                             );
-                    }),
-              ))
+                          },
+                        )
+                      : StreamBuilder<QuerySnapshot>(
+                          stream: orders,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (snapshot.hasError) {
+                              return Text('Something went wrong');
+                            }
+
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return Text("Loading");
+                            }
+
+                            return ListView(
+                              children: snapshot.data!.docs
+                                  .map((DocumentSnapshot document) {
+                                Map<String, dynamic> data =
+                                    document.data()! as Map<String, dynamic>;
+                                return CardWidget(
+                                  name: data['name'],
+                                  category: data['category'],
+                                  isCancel: true,
+                                );
+                              }).toList(),
+                            );
+                          },
+                        ),
+                ),
+              )
             ],
           )),
     );

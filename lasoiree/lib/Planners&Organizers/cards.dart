@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'plannersclass.dart';
 //import 'package:url_launcher/url_launcher.dart';
@@ -89,7 +90,12 @@ class PlannersCardWidget extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 0.0),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          FirebaseFirestore.instance.collection('orders').add({
+                            'name': plannersData.getName,
+                            'category': 'Organizers'
+                          });
+                        },
                         child: const Text('Book Now',
                             style: const TextStyle(
                               fontWeight: FontWeight.bold,

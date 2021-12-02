@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lasoiree/Decorations/data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -81,10 +82,7 @@ class CardWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      if(rent)
-                      rentnow()
-                      else
-                      ordernow(),
+                      if (rent) rentnow() else ordernow(decoData),
                     ],
                   ),
                 ),
@@ -196,8 +194,8 @@ class CardWidget extends StatelessWidget {
       );
     }
   }
- 
- Widget rentnow() {
+
+  Widget rentnow() {
     return FlatButton(
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       color: Colors.pink[100],
@@ -209,9 +207,8 @@ class CardWidget extends StatelessWidget {
       onPressed: () {},
     );
   }
- 
 
-  Widget ordernow() {
+  Widget ordernow(data) {
     return FlatButton(
       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       color: Colors.pink[100],
@@ -220,7 +217,11 @@ class CardWidget extends StatelessWidget {
         'Order Now',
         style: TextStyle(fontSize: 15),
       ),
-      onPressed: () {},
+      onPressed: () {
+        FirebaseFirestore.instance
+            .collection('decorations')
+            .add({'name': data.getName, 'category': 'Decorations'});
+      },
     );
   }
 }
