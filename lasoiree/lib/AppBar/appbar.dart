@@ -15,21 +15,18 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-      backgroundColor: backgroundColor,
-      title: Text(
-        title,
-        style: const TextStyle(color: Colors.black),
+      appBar: AppBar(
+        backgroundColor: backgroundColor,
+        title: Text(
+          title,
+          style: const TextStyle(color: Colors.black),
+        ),
+        centerTitle: true,
+        elevation: 0,
+        leading: BackButton(
+          color: Colors.black,
+        ),
       ),
-      centerTitle: true,
-      elevation: 0,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back_ios),
-        color: Colors.black,
-        onPressed: () {
-          Navigator.of(context).maybePop();
-        },
-      ),
-    ));
+    );
   }
 }

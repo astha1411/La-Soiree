@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lasoiree/HomePage.dart';
 import 'package:lasoiree/chat.dart';
 //import 'package:lasoiree/tmain.dart';
 
@@ -168,11 +169,10 @@ class _MyChatsState extends State<MyChats> {
                     BackButton(
                       color: Colors.black,
                       onPressed: () {
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (context) {
-                        //  return HomePage();
-                        // })
-                       // );
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return HomePage();
+                        }));
                       },
                     ),
                     Text(

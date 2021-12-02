@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lasoiree/Food&Caterers/FoodCaterers.dart';
+import 'package:lasoiree/Photography&Video/PhotographyVideo.dart';
 import 'cards.dart';
 import 'package:lasoiree/AppBar/appbar.dart';
 import 'package:lasoiree/Cakes&Desserts/CakesDesserts.dart';
@@ -15,6 +17,7 @@ class Categories extends StatelessWidget {
             appBar: AppBarWidget(
               title: 'Categories',
               backgroundColor: Colors.white,
+
             ),
             body: SingleChildScrollView(
                 child: Column(
@@ -27,12 +30,12 @@ class Categories extends StatelessWidget {
                           'https://c4.wallpaperflare.com/wallpaper/961/360/885/colorful-cream-cakes-pastries-sweet-food-wallpaper-preview.jpg'),
                   CardWidget(
                       name: 'Food & Caterers',
-                      route: CakesDesserts(),
+                      route: FoodCaterers(),
                       image:
                           'https://images.chinahighlights.com/allpicture/2015/10/a09e1fd5fe6247a299ba5b4e_cut_800x500_9.jpg'),
                   CardWidget(
                       name: 'Photographers & Video',
-                      route: CakesDesserts(),
+                      route: PhotographyVideos(),
                       image:
                           'https://images.thequint.com/thequint%2F2021-10%2F554046dc-69d2-4c01-8ac2-e699b9ad43c5%2FUntitled_design__94_.png'),
                   CardWidget(

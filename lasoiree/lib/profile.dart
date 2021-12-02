@@ -126,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
               Container(
                 height: 60,
                 alignment: Alignment.topLeft,
-                padding: EdgeInsets.fromLTRB(40, 10, 0, 30),
+                padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
                 child: Text(
                   'Vidyanagar, Vidya Vihar East, Ghatkopar East, Mumbai',
                   style: TextStyle(
@@ -136,9 +136,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               Container(
-                height: 60,
+                height: 50,
                 alignment: Alignment.center,
-                padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
+                padding: EdgeInsets.fromLTRB(0, 10, 0, 5),
                 child: Text(
                   'Reach out to us at',
                   style: TextStyle(fontSize: 20),
@@ -150,19 +150,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: <Widget>[
                   Icon(
                     FontAwesomeIcons.facebook,
-                    size: 50,
+                    size: 40,
                   ),
                   Icon(
                     FontAwesomeIcons.twitter,
-                    size: 50,
+                    size: 40,
                   ),
                   Icon(
                     FontAwesomeIcons.instagram,
-                    size: 50,
+                    size: 40,
                   ),
                   Icon(
                     FontAwesomeIcons.globe,
-                    size: 50,
+                    size: 40,
                   ),
                 ],
               ),
