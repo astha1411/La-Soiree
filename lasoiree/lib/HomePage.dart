@@ -10,13 +10,33 @@ import 'package:lasoiree/Decorations/RentDecorations.dart';
 import 'package:lasoiree/Decorations/Decorations.dart';
 import 'Cakes&Desserts/CakesDesserts.dart';
 import 'Photography&Video/PhotographyVideo.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+_signOut() async {
+  await _firebaseAuth.signOut();
+}
+
 class _HomePageState extends State<HomePage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var user = FirebaseAuth.instance.currentUser;
+
+  // void initState() {
+  //   super.initState();
+  //   initUser();
+  // }
+
+  // initUser() async {
+  //   user = await _auth.currentUser();
+  //   setState(() {});
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -627,8 +647,9 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: Colors.pink[100],
               ),
-              accountName: Text("Hi John Doe!", style: TextStyle(fontSize: 20)),
-              accountEmail: Text("johndoe@gmail.com"),
+              accountName: Text("Hello ${user?.displayName}",
+                  style: TextStyle(fontSize: 20)),
+              accountEmail: Text("${user?.email}"),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.pink[300],
                 child: Icon(
@@ -670,10 +691,14 @@ class _HomePageState extends State<HomePage> {
             ),
             ListTile(
               title: const Text('Logout'),
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return Login();
-                }));
+              onTap: () async {
+                await _signOut();
+                if (_firebaseAuth.currentUser == null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
+                }
               },
             ),
           ],

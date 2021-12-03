@@ -1,41 +1,34 @@
 {
   "project_info": {
-    "project_number": "862091795394",
-    "project_id": "la-soiree-58506",
-    "storage_bucket": "la-soiree-58506.appspot.com"
+    "project_number": "247229363445",
+    "project_id": "la-soiree-app",
+    "storage_bucket": "la-soiree-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:862091795394:android:3af6cd0b2f130f0572145b",
+        "mobilesdk_app_id": "1:247229363445:android:436c949af82357273a41bc",
         "android_client_info": {
-          "package_name": "com.example.lasoiree"
+          "package_name": "com.example.proj1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "862091795394-ch5r3jbd25olf6fngs2m3tonkg01s8f9.apps.googleusercontent.com",
+          "client_id": "247229363445-om243fms3em6ra4iiqr1hcid3mu54a8t.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC_jLqPkhgHy23huXu1IgrCNEF_fWa4obI"
+          "current_key": "AIzaSyBP82b7xJZ_nnKcBybzVhW5b7hjITORV0c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "862091795394-ch5r3jbd25olf6fngs2m3tonkg01s8f9.apps.googleusercontent.com",
+              "client_id": "247229363445-om243fms3em6ra4iiqr1hcid3mu54a8t.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "862091795394-ke8vafpmvcifupk05hupln198kqkjhtg.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.lasoiree"
-              }
             }
           ]
         }

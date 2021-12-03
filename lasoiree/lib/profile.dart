@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:lasoiree/Login.dart';
+import 'package:lasoiree/SignIn.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +22,14 @@ class ProfilePage extends StatefulWidget {
   _ProfilePageState createState() => _ProfilePageState();
 }
 
+final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
+_signOut() async {
+  await _firebaseAuth.signOut();
+}
+
 class _ProfilePageState extends State<ProfilePage> {
+  var user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 8.0,
               ),
               Text(
-                'John Doe',
+                "${user?.displayName}",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w700,
@@ -86,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
                 child: Text(
-                  'johndoe@gmail.com',
+                  "${user?.email}",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black54,
@@ -107,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
                 child: Text(
-                  '1000010000',
+                  "${user?.phoneNumber}",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black54,
@@ -115,25 +125,21 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               Container(
-                height: 40,
-                alignment: Alignment.topLeft,
-                padding: EdgeInsets.fromLTRB(40, 20, 0, 0),
-                child: Text(
-                  'Address',
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              Container(
-                height: 60,
-                alignment: Alignment.topLeft,
-                padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
-                child: Text(
-                  'Vidyanagar, Vidya Vihar East, Ghatkopar East, Mumbai',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.black54,
-                  ),
-                ),
+                height: 50,
+                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                child: RaisedButton(
+                    textColor: Colors.white,
+                    color: Colors.pink[100],
+                    child: Text('Logout'),
+                    onPressed: () async {
+                      await _signOut();
+                      if (_firebaseAuth.currentUser == null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Login()),
+                        );
+                      }
+                    }),
               ),
               Container(
                 height: 50,
