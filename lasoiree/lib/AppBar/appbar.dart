@@ -27,9 +27,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
         leading: BackButton(
           color: Colors.black,
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return HomePage();
-            }));
+            Navigator.pop(context);
           },
         ),
       ),

@@ -99,7 +99,7 @@ class CardWidget extends StatelessWidget {
       padding: const EdgeInsets.only(left: 0.0),
       child: Container(
         height: 100,
-        width: 180,
+        width: 170,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: new NetworkImage(data.getImage), fit: BoxFit.cover)),
@@ -110,7 +110,7 @@ class CardWidget extends StatelessWidget {
   Widget call() {
     return Icon(
       FontAwesomeIcons.phone,
-      size: 25,
+      size: 20,
     );
   }
 
@@ -176,7 +176,7 @@ class CardWidget extends StatelessWidget {
   Widget map() {
     return Icon(
       FontAwesomeIcons.mapMarker,
-      size: 25,
+      size: 20,
     );
   }
 

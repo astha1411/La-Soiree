@@ -6,12 +6,12 @@ import 'package:lasoiree/mychats.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'data.dart';
 
-class Decorations extends StatefulWidget {
+class RentDecorations extends StatefulWidget {
   @override
   _DecorationsState createState() => _DecorationsState();
 }
 
-class _DecorationsState extends State<Decorations> {
+class _DecorationsState extends State<RentDecorations> {
   final Stream<QuerySnapshot> decorations =
       FirebaseFirestore.instance.collection('decorations').snapshots();
 

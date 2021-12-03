@@ -39,6 +39,7 @@ dependencies:
   firebase_core: "1.10.0"
   firebase_auth: "3.2.0"
   cloud_firestore: ^3.1.0
+  flutter_email_sender: ^5.0.2
 
   # Add the dependency for the FlutterFire plugin for Google Analytics
   firebase_analytics: ^5.0.2
@@ -71,6 +72,7 @@ flutter:
     - assets/planners/pic1.jpg
     - assets/planners/pic2.jpg
     - assets/planners/pic3.jpg
+    - assets/logo.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

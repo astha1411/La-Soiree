@@ -33,10 +33,10 @@ class PlannersCardWidget extends StatelessWidget {
                     child: Container(
                       width: MediaQuery.of(context).size.width,
                       height: 150,
-                      child: Image.asset(
-                        plannersData.getImage,
-                        fit: BoxFit.fill,
-                      ),
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: new NetworkImage(plannersData.getImage),
+                              fit: BoxFit.cover)),
                     ),
                   ),
                   Padding(

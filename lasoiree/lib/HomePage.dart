@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lasoiree/Categories/categories.dart';
 import 'package:lasoiree/Planners&Organizers/Planners&Organizers.dart';
-import 'package:lasoiree/foodCaterers.dart';
+import 'package:lasoiree/Food&Caterers/FoodCaterers.dart';
 import 'package:lasoiree/orders/orderspage.dart';
 import 'package:lasoiree/mychats.dart';
 import 'package:lasoiree/profile.dart';
 import 'package:lasoiree/Login.dart';
 import 'package:lasoiree/Decorations/RentDecorations.dart';
-
+import 'package:lasoiree/Decorations/Decorations.dart';
 import 'Cakes&Desserts/CakesDesserts.dart';
 import 'Photography&Video/PhotographyVideo.dart';
 
@@ -93,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                     onTap: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return PlannersOrganizers();
+                        return PlannersOrganizers(table: 'planners');
                       }));
                     },
                     child: Container(
@@ -291,21 +291,29 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Stack(
                         children: <Widget>[
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.pink[200],
+                          InkWell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.pink[200],
+                              ),
+                              width: 100,
+                              padding: EdgeInsets.all(5),
+                              margin: EdgeInsets.all(8),
+                              alignment: Alignment.center,
+                              child: Text(
+                                "Balloons & Decorations",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 15),
+                              ),
                             ),
-                            width: 100,
-                            padding: EdgeInsets.all(5),
-                            margin: EdgeInsets.all(8),
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Balloons & Decorations",
-                              textAlign: TextAlign.center,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15),
-                            ),
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return Decorations();
+                              }));
+                            },
                           ),
                           Positioned(
                             left: 35,
@@ -375,105 +383,137 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://ae01.alicdn.com/kf/HTB1BYshQFXXXXXvXpXXq6xXFXXXi/HUAYI-Hazy-light-photography-newborn-backdrop-dark-background-XT4705.jpg'),
-                        fit: BoxFit.cover,
-                        colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://ae01.alicdn.com/kf/HTB1BYshQFXXXXXvXpXXq6xXFXXXi/HUAYI-Hazy-light-photography-newborn-backdrop-dark-background-XT4705.jpg'),
+                          fit: BoxFit.cover,
+                          colorFilter: new ColorFilter.mode(
+                              Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.pink[200],
                       ),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.pink[200],
+                      width: 100,
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(8),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Bachlorette Parties",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
-                    width: 100,
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(8),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Bachlorette Parties",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700),
-                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return PlannersOrganizers(table: 'bachelorette');
+                      }));
+                    },
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://i2.wp.com/www.weddingsutra.com/images/ms-decor-thumb-1.jpg?fit=700%2C700&ssl=1?%3E'),
-                        fit: BoxFit.cover,
-                        colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://i2.wp.com/www.weddingsutra.com/images/ms-decor-thumb-1.jpg?fit=700%2C700&ssl=1?%3E'),
+                          fit: BoxFit.cover,
+                          colorFilter: new ColorFilter.mode(
+                              Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.pink[200],
                       ),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.pink[200],
+                      width: 100,
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(8),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Weddings",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
-                    width: 100,
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(8),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Weddings",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700),
-                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return PlannersOrganizers(table: 'weddings');
+                      }));
+                    },
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNjFjMnBqb21TQ0wuX0FDX1NMMTIwMF8uanBn.jpg'),
-                        fit: BoxFit.cover,
-                        colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://www.ubuy.com.tr/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvNjFjMnBqb21TQ0wuX0FDX1NMMTIwMF8uanBn.jpg'),
+                          fit: BoxFit.cover,
+                          colorFilter: new ColorFilter.mode(
+                              Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.pink[200],
                       ),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.pink[200],
+                      width: 100,
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(8),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Baby Showers",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
-                    width: 100,
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(8),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Baby Showers",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700),
-                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return PlannersOrganizers(table: 'babyshower');
+                      }));
+                    },
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                            'https://previews.123rf.com/images/juliannafunk/juliannafunk1607/juliannafunk160700015/62543113-colorful-birthday-cake-with-sprinkles-over-a-pink-background-.jpg'),
-                        fit: BoxFit.cover,
-                        colorFilter: new ColorFilter.mode(
-                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                  InkWell(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              'https://previews.123rf.com/images/juliannafunk/juliannafunk1607/juliannafunk160700015/62543113-colorful-birthday-cake-with-sprinkles-over-a-pink-background-.jpg'),
+                          fit: BoxFit.cover,
+                          colorFilter: new ColorFilter.mode(
+                              Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.pink[200],
                       ),
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.pink[200],
+                      width: 100,
+                      padding: EdgeInsets.all(5),
+                      margin: EdgeInsets.all(8),
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Birthdays & Anniversary",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700),
+                      ),
                     ),
-                    width: 100,
-                    padding: EdgeInsets.all(5),
-                    margin: EdgeInsets.all(8),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Birthdays & Anniversary",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700),
-                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return PlannersOrganizers(table: 'birthdays');
+                      }));
+                    },
                   ),
                 ],
               ),
@@ -526,35 +566,42 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return Decorations();
+                    return RentDecorations();
                   }));
                 },
               ),
-              Container(
-                width: double.infinity,
-                height: 100,
-                alignment: Alignment.center,
-                margin:
-                    EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 10),
-                padding: EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: NetworkImage(
-                          'https://previews.123rf.com/images/essentialimagemedia/essentialimagemedia1605/essentialimagemedia160500020/58634836-high-end-table-setting-with-fine-cutlery-glassware-and-crockery.jpg'),
-                      fit: BoxFit.cover,
-                      colorFilter: new ColorFilter.mode(
-                          Colors.black.withOpacity(0.5), BlendMode.dstATop),
-                    ),
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.pink[300]),
-                child: Text(
-                  "Crockery & Others",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
+              InkWell(
+                child: Container(
+                  width: double.infinity,
+                  height: 100,
+                  alignment: Alignment.center,
+                  margin:
+                      EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 10),
+                  padding: EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            'https://californiaweddingday.com/sites/default/files/field/sandbox_californiaweddingday_com_239elwb01_blackmesh_com/2018/image/60a.jpg'),
+                        fit: BoxFit.cover,
+                        colorFilter: new ColorFilter.mode(
+                            Colors.black.withOpacity(0.5), BlendMode.dstATop),
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.pink[300]),
+                  child: Text(
+                    "Venues",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700),
+                  ),
                 ),
-              )
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return PlannersOrganizers(table: 'planners');
+                  }));
+                },
+              ),
             ]),
             Container(
               margin: EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),

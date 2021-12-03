@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lasoiree/RequestedButton/RequestedButton.dart';
 import 'package:lasoiree/Photography&Video/data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -179,20 +180,7 @@ class CardWidget extends StatelessWidget {
   }
 
   Widget requestinfo() {
-    return FlatButton(
-      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      color: Colors.pink[100],
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Text(
-        requested ? "Reuested" : "Request Info",
-        style: TextStyle(fontSize: 15),
-      ),
-      onPressed: () {
-        if (requested) {
-          return null;
-        }
-      },
-    );
+    return RequestButton();
   }
 
   Widget ordernow(data) {
@@ -211,6 +199,4 @@ class CardWidget extends StatelessWidget {
       },
     );
   }
-
-  toList() {}
 }

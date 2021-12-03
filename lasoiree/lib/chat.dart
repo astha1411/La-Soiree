@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 class ChatMessage {
   String messageContent;
   String messageType;
-  ChatMessage({@required this.messageContent='', @required this.messageType=''});
+  ChatMessage(
+      {@required this.messageContent = '', @required this.messageType = ''});
 }
 
 List<ChatMessage> messages = [
@@ -20,18 +21,7 @@ List<ChatMessage> messages = [
       messageContent: "5 pm would be great, thank you!", messageType: "sender"),
 ];
 
-void main() {
-  runApp(MyApp());
-}
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: ChatPage(),
-    );
-  }
-}
 
 class ChatPage extends StatefulWidget {
   @override

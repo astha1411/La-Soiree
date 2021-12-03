@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 import 'package:lasoiree/Food&Caterers/data.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lasoiree/RequestedButton/RequestedButton.dart';
 
 class CardWidget extends StatelessWidget {
   final FoodData foodData;
@@ -179,16 +179,7 @@ class CardWidget extends StatelessWidget {
   }
 
   Widget requestinfo() {
-    return FlatButton(
-      padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-      color: Colors.pink[100],
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      child: Text(
-        "Request Info",
-        style: TextStyle(fontSize: 15),
-      ),
-      onPressed: () {},
-    );
+    return RequestButton();
   }
 
   Widget ordernow(data) {

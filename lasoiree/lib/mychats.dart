@@ -132,18 +132,6 @@ class _ConversationListState extends State<ConversationList> {
   }
 }
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyChats(),
-    );
-  }
-}
 
 class MyChats extends StatefulWidget {
   @override
@@ -169,10 +157,7 @@ class _MyChatsState extends State<MyChats> {
                     BackButton(
                       color: Colors.black,
                       onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return HomePage();
-                        }));
+                        Navigator.pop(context);
                       },
                     ),
                     Text(
