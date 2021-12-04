@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,14 +23,14 @@ List<ChatMessage> messages = [
       messageContent: "5 pm would be great, thank you!", messageType: "sender"),
 ];
 
-
-
 class ChatPage extends StatefulWidget {
   @override
   _ChatPageState createState() => _ChatPageState();
 }
 
 class _ChatPageState extends State<ChatPage> {
+  final newMessageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,36 +66,38 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
             Stack(
-              children: <Widget>[
-                ListView.builder(
-                  itemCount: messages.length,
-                  shrinkWrap: true,
-                  padding: EdgeInsets.only(top: 60, bottom: 10),
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      padding: EdgeInsets.only(
-                          left: 14, right: 14, top: 10, bottom: 10),
-                      child: Align(
-                        alignment: (messages[index].messageType == "receiver"
-                            ? Alignment.topLeft
-                            : Alignment.topRight),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: (messages[index].messageType == "receiver"
-                                ? Colors.grey.shade200
-                                : Colors.pink[50]),
-                          ),
-                          padding: EdgeInsets.all(16),
-                          child: Text(
-                            messages[index].messageContent,
-                            style: TextStyle(fontSize: 15),
+              children: [
+                Container(
+                  padding: EdgeInsets.only(top: 70, bottom: 60),
+                  child: ListView.builder(
+                    itemCount: messages.length,
+                    shrinkWrap: true,
+                    padding: EdgeInsets.only(bottom: 10),
+                    itemBuilder: (context, index) {
+                      return Container(
+                        padding: EdgeInsets.only(
+                            left: 14, right: 14, top: 10, bottom: 10),
+                        child: Align(
+                          alignment: (messages[index].messageType == "receiver"
+                              ? Alignment.topLeft
+                              : Alignment.topRight),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: (messages[index].messageType == "receiver"
+                                  ? Colors.grey.shade200
+                                  : Colors.pink[50]),
+                            ),
+                            padding: EdgeInsets.all(16),
+                            child: Text(
+                              messages[index].messageContent,
+                              style: TextStyle(fontSize: 15),
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
                 Align(
                   alignment: Alignment.bottomLeft,
@@ -125,6 +129,7 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                         Expanded(
                           child: TextField(
+                            controller: newMessageController,
                             decoration: InputDecoration(
                                 hintText: "Write message...",
                                 hintStyle: TextStyle(color: Colors.black54),
@@ -136,10 +141,11 @@ class _ChatPageState extends State<ChatPage> {
                         ),
                         FloatingActionButton(
                           onPressed: () {},
-                          child: Icon(
-                            Icons.send,
+                          child: IconButton(
+                            icon: Icon(Icons.send),
+                            onPressed: sendMessage,
                             color: Colors.white,
-                            size: 18,
+                            iconSize: 18,
                           ),
                           backgroundColor: Colors.pink[300],
                           elevation: 0,
@@ -154,5 +160,23 @@ class _ChatPageState extends State<ChatPage> {
         ),
       ),
     );
+  }
+
+  void sendMessage() {
+    setState(() {
+      messages.add(ChatMessage(
+          messageContent: newMessageController.text, messageType: "sender"));
+    });
+    newMessageController.text = "";
+    Future.delayed(const Duration(milliseconds: 500), () {
+// Here you can write your code
+
+      setState(() {
+        messages.add(ChatMessage(
+            messageContent: "Yes, we just got it packed!",
+            messageType: "receiver"));
+        // Here you can  write your code for open new view
+      });
+    });
   }
 }

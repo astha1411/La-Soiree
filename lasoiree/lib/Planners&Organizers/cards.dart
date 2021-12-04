@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'plannersclass.dart';
-//import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:maps_launcher/maps_launcher.dart';
 
 class PlannersCardWidget extends StatelessWidget {
@@ -51,17 +51,15 @@ class PlannersCardWidget extends StatelessWidget {
                             )),
                         IconButton(
                           icon: const Icon(Icons.call),
-                          onPressed: () {},
+                          onPressed: () {
+                            launch(('tel://${plannersData.number}'));
+                          },
                         ),
                         IconButton(
                           icon: const Icon(Icons.location_on),
                           onPressed: () {
-                            // _makePhoneCall('tel://${number}');
-                          }, //async
-                          //launch('tel://${number}');
-                          //launch('tel:98765433');
-
-                          //},
+                            _launchURL();
+                          },
                         ),
                       ],
                     ),
@@ -120,10 +118,7 @@ class PlannersCardWidget extends StatelessWidget {
   }
 }
 
-// Future<void> _makePhoneCall(String url) async {
-//   if (await canLaunch(url)) {
-//     await launch(url);
-//   } else {
-//     throw 'Could not launch $url';
-//   }
-// }
+void _launchURL() async {
+  const String _url = 'https://flutter.dev';
+  if (!await launch(_url)) throw 'Could not launch $_url';
+}

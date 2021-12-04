@@ -173,8 +173,9 @@ class _SignInState extends State<SignIn> {
                                   });
 
                                   try {
-                                    await _auth.createUserWithEmailAndPassword(
-                                        email: email, password: password);
+                                    UserCredential result = await _auth
+                                        .createUserWithEmailAndPassword(
+                                            email: email, password: password);
 
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(

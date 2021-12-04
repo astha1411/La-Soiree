@@ -14,23 +14,6 @@ class PlannersOrganizers extends StatefulWidget {
   PlannersOrganizersState createState() => PlannersOrganizersState();
 }
 
-// class BirthdaysOrganizers extends StatefulWidget {
-//   PlannersOrganizersState createState() => PlannersOrganizersState("birthdays");
-// }
-
-// class BacheloretteOrganizers extends StatefulWidget {
-//   PlannersOrganizersState createState() =>
-//       PlannersOrganizersState("bachelorette");
-// }
-
-// class WeddingsOrganizers extends StatefulWidget {
-//   PlannersOrganizersState createState() => PlannersOrganizersState("weddings");
-// }
-
-// class BabyShowersOrganizers extends StatefulWidget {
-//   PlannersOrganizersState createState() =>
-//       PlannersOrganizersState("babyshower");
-// }
 
 class PlannersOrganizersState extends State<PlannersOrganizers> {
   late Stream<QuerySnapshot> cakes;
