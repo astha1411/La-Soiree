@@ -75,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 height: 8.0,
               ),
               Text(
-                "${user?.displayName}",
+                "John Doe",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w700,
@@ -117,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.fromLTRB(40, 10, 0, 10),
                 child: Text(
-                  "${user?.phoneNumber}",
+                  "9876543210",
                   style: TextStyle(
                     fontSize: 15,
                     color: Colors.black54,
