@@ -647,7 +647,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                 color: Colors.pink[100],
               ),
-              accountName: Text("Hello ${user?.displayName}",
+              accountName: Text("Hello John Doe",
                   style: TextStyle(fontSize: 20)),
               accountEmail: Text("${user?.email}"),
               currentAccountPicture: CircleAvatar(
