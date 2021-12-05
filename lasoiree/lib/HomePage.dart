@@ -601,7 +601,7 @@ class _HomePageState extends State<HomePage> {
                   decoration: BoxDecoration(
                       image: DecorationImage(
                         image: NetworkImage(
-                            'https://californiaweddingday.com/sites/default/files/field/sandbox_californiaweddingday_com_239elwb01_blackmesh_com/2018/image/60a.jpg'),
+                            'http://www.hamaraevent.com/uploads/blog/0726480001469276826.png'),
                         fit: BoxFit.cover,
                         colorFilter: new ColorFilter.mode(
                             Colors.black.withOpacity(0.5), BlendMode.dstATop),

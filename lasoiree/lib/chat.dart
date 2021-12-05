@@ -18,6 +18,10 @@ List<ChatMessage> messages = [
   ChatMessage(
       messageContent: "Hey Matt, I'd like 100 brownies by tomorrow.",
       messageType: "sender"),
+  ChatMessage(
+      messageContent: "What flavour would you like to order?",
+      messageType: "receiver"),
+  ChatMessage(messageContent: "Chocolate", messageType: "sender"),
   ChatMessage(messageContent: "Okay, what time?", messageType: "receiver"),
   ChatMessage(
       messageContent: "5 pm would be great, thank you!", messageType: "sender"),
@@ -168,7 +172,7 @@ class _ChatPageState extends State<ChatPage> {
           messageContent: newMessageController.text, messageType: "sender"));
     });
     newMessageController.text = "";
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 2300), () {
 // Here you can write your code
 
       setState(() {

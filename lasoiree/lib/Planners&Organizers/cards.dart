@@ -119,6 +119,7 @@ class PlannersCardWidget extends StatelessWidget {
 }
 
 void _launchURL() async {
-  const String _url = 'https://flutter.dev';
+  const String _url =
+      'https://www.google.com/maps/dir/19.0767154,72.9106199/4+seasons+events+locations/@25.4379967,76.0478131,9z/data=!4m9!4m8!1m1!4e1!1m5!1m1!1s0x390ce44ec3052baf:0xdae8cb147ced8cb0!2m2!1d77.3247447!2d28.5717267';
   if (!await launch(_url)) throw 'Could not launch $_url';
 }
