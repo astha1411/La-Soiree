@@ -69,7 +69,7 @@ class _SignInState extends State<SignIn> {
                         child: Row(
                       children: <Widget>[
                         Text(
-                          'Already registered?',
+                          'Already Registered?',
                           style: TextStyle(color: Colors.white, fontSize: 15),
                           textAlign: TextAlign.center,
                         ),
